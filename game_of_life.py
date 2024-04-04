@@ -93,7 +93,7 @@ def updateCells():   #Figure 2
             if cells[i][j].state > 0:
                 cells[i][j].state += 1
                 cells[i][j].color(
-                    color_palette[min(cells[i][j].state - 1, len(color_palette) - 1)])  # 更新细胞颜色，注意状态要减1以保证不越界
+                    color_palette[min(cells[i][j].state - 1, len(color_palette) - 1)])
             else:
                 cells[i][j].color("gray90")
 
