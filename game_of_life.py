@@ -54,7 +54,7 @@ def getNeighbors(i, j):
         nj = j + offset[1]
 
         if boundaryCondition == 1:
-            if 0 <= ni < 35 and 0 <= nj < 35:
+            if 0 <= ni < 35 and 0 <= nj < 35:   # 35 * 35
                 neighbors_state.append(cells[ni][nj].state)
         elif boundaryCondition == 2:
             ni = ni % 35
@@ -65,17 +65,17 @@ def getNeighbors(i, j):
 
     return live_neighbors_count
 
-color_palette = ["gray90", "gray80", "gray70", "gray60", "gray50"]
-def updateCells():   #Figure 2
+color_palette = ["gray90", "gray80", "gray70", "gray60", "gray50"] # extra part
+def updateCells():
     ###### YOUR CODE #####
     #Update each cell to alive/dead based on the rules. Call your function getNeighbors
     # Remove the "pass" keyword at the end
 
     global cells
-    new_cells = [[None] * 35 for _ in range(35)]
+    new_cells = [[None] * 35 for i in range(35)]
 
     for i in range(35):
-        for j in range(35):   #state 1 is alive, state is dead
+        for j in range(35):   #state 1 is alive, state 2 is dead
             live_neighbors = getNeighbors(i, j)
             if cells[i][j].state == 1:
                 if live_neighbors < 2 or live_neighbors > 3:  #If a state of a cell is 1 and has fewer than two neighbors that have states 1, it changes to 0.
@@ -93,7 +93,7 @@ def updateCells():   #Figure 2
             if cells[i][j].state > 0:
                 cells[i][j].state += 1
                 cells[i][j].color(
-                    color_palette[min(cells[i][j].state - 1, len(color_palette) - 1)])
+                    color_palette[min(cells[i][j].state - 1, len(color_palette) - 1)])  # change the states
             else:
                 cells[i][j].color("gray90")
 
